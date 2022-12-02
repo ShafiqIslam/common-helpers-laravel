@@ -1,6 +1,6 @@
 <?php
 
-namespace Polygontech\CommonHelpers\BDMobile;
+namespace Polygontech\CommonHelpers\Mobile;
 
 class BDMobileFormatter
 {

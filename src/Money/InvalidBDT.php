@@ -1,6 +1,6 @@
 <?php
 
-namespace Polygontech\CommonHelpers\BDT;
+namespace Polygontech\CommonHelpers\Money;
 
 use Exception;
 use Throwable;

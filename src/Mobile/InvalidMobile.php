@@ -1,11 +1,11 @@
 <?php
 
-namespace Polygontech\CommonHelpers\BDMobile;
+namespace Polygontech\CommonHelpers\Mobile;
 
 use Exception;
 use Throwable;
 
-class InvalidMobile extends Exception
+class InvalidBDMobile extends Exception
 {
     public function __construct(string $message = "This is not a Bangladeshi Mobile Number", int $code = 400, ?Throwable $previous = null)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Polygontech\CommonHelpers\BDMobile;
+namespace Polygontech\CommonHelpers\Mobile;
 
 class BDMobileValidator
 {
@@ -37,9 +37,8 @@ class BDMobileValidator
 
     public function getValidated($number): string
     {
-        if (!$this->validate($number)) {
-            throw new InvalidMobile();
-        }
+        if (!$this->validate($number)) throw new InvalidBDMobile();
+
         return BDMobileFormatter::format($number);
     }
 }
