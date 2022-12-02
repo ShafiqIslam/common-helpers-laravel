@@ -8,7 +8,7 @@ polygontech/common-helpers is mainly used in laravel projects at polygontech. Bu
 
 ## Installation
 
-The preferred method of installation is via [Composer][]. Run the following
+The preferred method of installation is via [Composer](https://getcomposer.org/). Run the following
 command to install the package and add it as a requirement to your project's
 `composer.json`:
 
@@ -24,5 +24,5 @@ Contributions are welcome! To contribute, please familiarize yourself with
 ## Copyright and License
 
 The polygontech/common-helpers library is copyright © [Shafiqul Islam](https://github.com/ShafiqIslam/), [Polygon Technology](https://polygontech.xyz/) and
-licensed for use under the MIT License (MIT). Please see [LICENSE][] for more
+licensed for use under the MIT License (MIT). Please see [LICENSE](LICENSE) for more
 information.
