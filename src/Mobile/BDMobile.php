@@ -22,6 +22,14 @@ class BDMobile
         return $this->mobileNumber;
     }
 
+    /**
+     * @return string
+     */
+    public function getWithoutCountryCode(): string
+    {
+        return str_replace("+88", "", $this->mobileNumber);
+    }
+
     public function isSame(BDMobile $mobile): bool
     {
         return $this->getWithCountryCode() === $mobile->getWithCountryCode();
