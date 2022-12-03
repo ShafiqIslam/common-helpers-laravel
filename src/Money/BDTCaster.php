@@ -13,7 +13,7 @@ class BDTCaster implements CastsAttributes
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
-     * @return Money
+     * @return BDT
      */
     public function get($model, $key, $value, $attributes)
     {
@@ -25,7 +25,7 @@ class BDTCaster implements CastsAttributes
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  string  $key
-     * @param  Money  $value
+     * @param  BDT  $value
      * @param  array  $attributes
      * @return string
      */

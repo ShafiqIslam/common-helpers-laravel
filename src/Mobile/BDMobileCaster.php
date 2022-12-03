@@ -12,7 +12,7 @@ class BDMobileCaster implements CastsAttributes
      * @param $key
      * @param $value
      * @param $attributes
-     * @return Mobile
+     * @return BDMobile
      * @throws InvalidMobile
      */
     public function get($model, $key, $value, $attributes)
@@ -23,7 +23,7 @@ class BDMobileCaster implements CastsAttributes
     /**
      * @param $model
      * @param $key
-     * @param $value
+     * @param BDMobile $value
      * @param $attributes
      * @return string
      */
