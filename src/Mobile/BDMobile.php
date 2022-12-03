@@ -7,7 +7,7 @@ class BDMobile
     private readonly string $mobileNumber;
 
     /**
-     * @throws InvalidMobile
+     * @throws InvalidBDMobile
      */
     public function __construct(string $mobileNumber)
     {
