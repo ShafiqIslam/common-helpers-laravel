@@ -110,7 +110,7 @@ class URL
         return new URL(
             scheme: $url['scheme'] ?? "http",
             host: $url['host'],
-            port: $url['port'],
+            port: $url['port'] ?? null,
             path: trim($url['path'] ?? ""),
             queries: $queries
         );
