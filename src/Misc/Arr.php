@@ -19,6 +19,18 @@ class Arr
      * @param array $a
      * @return array
      */
+    public static function mapToAssocAndPreserveValues(callable $f, array $a)
+    {
+        return self::mapAssoc(function ($key, $value) use ($f) {
+            return [$f($value), $value];
+        }, $a);
+    }
+
+    /**
+     * @param callable $f
+     * @param array $a
+     * @return array
+     */
     public static function mapAssocAndPreserveKeys(callable $f, array $a)
     {
         return self::mapAssoc(function (string $key, $value) use ($f) {
