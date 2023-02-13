@@ -4,40 +4,53 @@ namespace Polygontech\CommonHelpers\Mobile;
 
 class BDMobileValidator
 {
-    public function validate($number): bool
+    public static function validate(string $number): bool
     {
         if (!$number) {
             return false;
         }
 
         $number = BDMobileFormatter::format($number);
-        return $this->isBangladeshiNumberFormat($number);
+        return self::isBangladeshiNumberFormat($number);
     }
 
-    private function isBangladeshiNumberFormat($number): bool
+    public static function isValid(string $number): bool
     {
-        return self::contains88($number) && strlen($number) == 14 && $number[4] == '1' && self::inBdNumberDomain($number);
+        return self::validate($number);
     }
 
-    private function contains88($number): bool
+    public static function isInvalid(string $number): bool
+    {
+        return !self::isValid($number);
+    }
+
+    private static function isBangladeshiNumberFormat(string $number): bool
+    {
+        return self::contains88($number)
+            && strlen($number) == 14
+            && $number[4] == '1'
+            && self::inBdNumberDomain($number);
+    }
+
+    private static function contains88(string $number): bool
     {
         return str_starts_with($number, '+880');
     }
 
-    private function inBdNumberDomain($number): bool
+    private static function inBdNumberDomain(string $number): bool
     {
         return in_array($number[5], [3, 4, 5, 6, 7, 8, 9]);
     }
 
     /**
-     * @param $number
+     * @param string $number
      * @return string
      * @throws InvalidMobile
      */
 
-    public function getValidated($number): string
+    public static function getValidated(string $number): string
     {
-        if (!$this->validate($number)) throw new InvalidBDMobile();
+        if (!self::validate($number)) throw new InvalidBDMobile();
 
         return BDMobileFormatter::format($number);
     }

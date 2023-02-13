@@ -11,7 +11,7 @@ class BDMobile
      */
     public function __construct(string $mobileNumber)
     {
-        $this->mobileNumber = (new BDMobileValidator)->getValidated($mobileNumber);
+        $this->mobileNumber = BDMobileValidator::getValidated($mobileNumber);
     }
 
     /**

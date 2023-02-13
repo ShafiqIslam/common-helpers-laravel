@@ -34,6 +34,6 @@ class BDMobileValidationRule implements Rule
 
     public function validateBangladeshi($value): bool
     {
-        return (new BDMobileValidator)->validate($value);
+        return BDMobileValidator::validate($value);
     }
 }
