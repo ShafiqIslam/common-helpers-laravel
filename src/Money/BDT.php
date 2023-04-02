@@ -34,6 +34,16 @@ class BDT
         return substr_replace($poysa, '.', strlen($poysa) - 2, 0);
     }
 
+    public function isZero(): bool
+    {
+        return $this->toInt() === 0;
+    }
+
+    public function isNotZero(): bool
+    {
+        return !$this->isZero();
+    }
+
     public static function fromDecimal(float $value): BDT
     {
         return new BDT(intval($value * 100));
