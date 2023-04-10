@@ -35,4 +35,26 @@ class Str
         $string    = preg_replace($keep_only, '', $string);           // Removes special chars.
         return preg_replace("/$separator+/", $separator, $string);    // Replaces multiple hyphens with single one.
     }
+
+    /**
+     * @param string $string
+     * @param ?int $substrCount
+     * @return string
+     */
+    public static function acronym(string $string, ?int $substrCount = 2): string
+    {
+        $words = explode(" ", $string);
+        $acronym = "";
+
+        $count = 0;
+
+        foreach ($words as $w) {
+            $acronym .= mb_substr($w, 0, 1);
+            $count++;
+
+            if ($count !== null && $substrCount === $count) break;
+        }
+
+        return LaravelStr::upper($acronym);
+    }
 }
