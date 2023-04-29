@@ -34,4 +34,29 @@ class BDMobile
     {
         return $this->getWithCountryCode() === $mobile->getWithCountryCode();
     }
+
+    public function isGp(): bool
+    {
+        return BDMobileDomains::isGp($this);
+    }
+
+    public function isBanglalink(): bool
+    {
+        return BDMobileDomains::isBanglalink($this);
+    }
+
+    public function isRobi(): bool
+    {
+        return BDMobileDomains::isRobi($this);
+    }
+
+    public function isAirtel(): bool
+    {
+        return BDMobileDomains::isAirtel($this);
+    }
+
+    public function isTeletalk(): bool
+    {
+        return BDMobileDomains::isTeletalk($this);
+    }
 }

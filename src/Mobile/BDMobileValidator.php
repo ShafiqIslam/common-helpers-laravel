@@ -6,9 +6,7 @@ class BDMobileValidator
 {
     public static function validate(string $number): bool
     {
-        if (!$number) {
-            return false;
-        }
+        if (!$number) return false;
 
         $number = BDMobileFormatter::format($number);
         return self::isBangladeshiNumberFormat($number);
@@ -29,17 +27,12 @@ class BDMobileValidator
         return self::contains88($number)
             && strlen($number) == 14
             && $number[4] == '1'
-            && self::inBdNumberDomain($number);
+            && BDMobileDomains::isValidDomain($number);
     }
 
     private static function contains88(string $number): bool
     {
         return str_starts_with($number, '+880');
-    }
-
-    private static function inBdNumberDomain(string $number): bool
-    {
-        return in_array($number[5], [3, 4, 5, 6, 7, 8, 9]);
     }
 
     /**
