@@ -40,6 +40,17 @@ class URL
     /**
      * Returns new url without modifying original.
      *
+     * @param string $path
+     * @return URL
+     */
+    public function addPath(string $path): URL
+    {
+	return $this->mutatePath($this->getPath() . '/' . trim($path, '/'));
+    }
+
+    /**
+     * Returns new url without modifying original.
+     *
      * @param string $name
      * @param string $value
      * @return URL
