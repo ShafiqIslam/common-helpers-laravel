@@ -76,6 +76,11 @@ class URL
         return is_null($this->path) ? "" : trim($this->path, "/");
     }
 
+    public function getQuery(string $queryKey): ?string
+    {
+        return $this->queries[$queryKey] ?? null;
+    }
+
     public function getQueryString(): string
     {
         return (empty($this->queries)) ? "" : ("?" . http_build_query($this->queries, '', '&'));
