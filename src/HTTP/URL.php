@@ -45,7 +45,7 @@ class URL
      */
     public function addPath(string $path): URL
     {
-	return $this->mutatePath($this->getPath() . '/' . trim($path, '/'));
+        return $this->mutatePath($this->getPath() . '/' . trim($path, '/'));
     }
 
     /**
@@ -123,11 +123,16 @@ class URL
             parse_str($url['query'], $queries);
         }
 
+        $path = null;
+        if (array_key_exists("path", $url)) {
+            $path = trim($url['path']);
+        }
+
         return new URL(
             scheme: $url['scheme'] ?? "http",
             host: $url['host'],
             port: $url['port'] ?? null,
-            path: trim($url['path'] ?? ""),
+            path: $path,
             queries: $queries
         );
     }
