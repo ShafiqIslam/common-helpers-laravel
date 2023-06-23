@@ -108,15 +108,9 @@ class URL
         return $this->getFull();
     }
 
-    public static function parse(string $string): URL
+    public static function parse(string $string): static
     {
-        $string = filter_var($string, FILTER_SANITIZE_URL);
-
-        if (!filter_var($string, FILTER_VALIDATE_URL)) throw new InvalidURL();
-
-        $url = parse_url($string);
-
-        if (!array_key_exists("host", $url)) throw new InvalidURL("Host undefined.");
+        $url = self::validateAndGetParts($string);
 
         $queries = [];
         if (array_key_exists("query", $url)) {
@@ -128,12 +122,25 @@ class URL
             $path = trim($url['path']);
         }
 
-        return new URL(
+        return new static(
             scheme: $url['scheme'] ?? "http",
             host: $url['host'],
             port: $url['port'] ?? null,
             path: $path,
             queries: $queries
         );
+    }
+
+    public static function validateAndGetParts(string $string): array
+    {
+        $string = filter_var($string, FILTER_SANITIZE_URL);
+
+        if (!filter_var($string, FILTER_VALIDATE_URL)) throw new InvalidURL();
+
+        $url = parse_url($string);
+
+        if (!array_key_exists("host", $url)) throw new InvalidURL("Host undefined.");
+
+        return $url;
     }
 }
