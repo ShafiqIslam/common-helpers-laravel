@@ -27,7 +27,8 @@ class BDMobileValidator
         return self::contains88($number)
             && strlen($number) == 14
             && $number[4] == '1'
-            && BDMobileDomains::isValidDomain($number);
+            && BDMobileDomains::isValidDomain($number)
+            && self::isContainNumberWithoutBDCountryCode($number);
     }
 
     private static function contains88(string $number): bool
@@ -46,5 +47,16 @@ class BDMobileValidator
         if (!self::validate($number)) throw new InvalidBDMobile();
 
         return BDMobileFormatter::format($number);
+    }
+
+    /**
+     * @param string $number
+     * @return bool
+     */
+    public static function isContainNumberWithoutBDCountryCode(string $number) : bool
+    {
+        $number = preg_replace('/^(\+88)/', '', $number);
+        if (preg_match("/^0[0-9]*$/",$number)) return  true;
+        return false;
     }
 }
