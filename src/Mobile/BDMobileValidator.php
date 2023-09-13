@@ -53,7 +53,7 @@ class BDMobileValidator
      * @param string $number
      * @return bool
      */
-    public static function isContainNumberWithoutBDCountryCode(string $number) : bool
+    private static function isContainNumberWithoutBDCountryCode(string $number) : bool
     {
         $number = preg_replace('/^(\+88)/', '', $number);
         return preg_match("/^0[0-9]*$/",$number);
