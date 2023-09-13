@@ -28,7 +28,7 @@ class BDMobileValidator
             && strlen($number) == 14
             && $number[4] == '1'
             && BDMobileDomains::isValidDomain($number)
-            && self::isContainNumberWithoutBDCountryCode($number);
+            && self::doesContainOnlyNumbersAndCountryCode($number);
     }
 
     private static function contains88(string $number): bool
@@ -53,7 +53,7 @@ class BDMobileValidator
      * @param string $number
      * @return bool
      */
-    private static function isContainNumberWithoutBDCountryCode(string $number) : bool
+    private static function doesContainOnlyNumbersAndCountryCode(string $number) : bool
     {
         $number = preg_replace('/^(\+88)/', '', $number);
         return preg_match("/^0[0-9]*$/",$number);
