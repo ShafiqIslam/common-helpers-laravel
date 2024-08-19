@@ -103,6 +103,11 @@ class URL
         return $this->scheme . "://" . $this->getWithoutScheme();
     }
 
+    public function getWithoutQueryString(): string
+    {
+        return $this->scheme . "://" .$this->getFQDN().'/'.$this->getPath();
+    }
+
     public function __toString()
     {
         return $this->getFull();
