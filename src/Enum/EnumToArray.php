@@ -4,9 +4,14 @@ namespace Polygontech\CommonHelpers\Enum;
 
 use Polygontech\CommonHelpers\Misc\Arr;
 use Illuminate\Support\Arr as IlluminateArr;
+use Illuminate\Support\Facades\Lang;
 
 trait EnumToArray
 {
+    public static function getLangFile(): string
+    {
+        return 'enum';
+    }
     public static function all(): array
     {
         return self::cases();
@@ -27,14 +32,34 @@ trait EnumToArray
         return array_column(self::cases(), 'value');
     }
 
-    public static function toArray(): array
+    public static function toArray(bool $isTranslate = false, string $locale = null): array
     {
-        return array_combine(self::values(), self::names());
+        $values = self::values();
+        $names = self::names();
+
+        if ($isTranslate) {
+            $locale = $locale ?: app()->getLocale();
+            $names = array_map(function ($name) use ($locale) {
+                return Lang::get(self::getLangFile() . ".$name", [], $locale);
+            }, $names);
+        }
+
+        return array_combine($values, $names);
     }
 
-    public static function toFlippedArray(): array
+    public static function toFlippedArray(bool $isTranslate = false, string $locale = null): array
     {
-        return array_combine(self::names(), self::values());
+        $values = self::values();
+        $names = self::names();
+
+        if ($isTranslate) {
+            $locale = $locale ?: app()->getLocale();
+            $names = array_map(function ($name) use ($locale) {
+                return Lang::get(self::getLangFile() . ".$name", [], $locale);
+            }, $names);
+        }
+
+        return array_combine($names, $values);
     }
 
     public static function implode($glue = ','): string
